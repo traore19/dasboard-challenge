@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700"
+      rel="stylesheet"
+    />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="jusgage/justgage-1.2.2/raphael-2.1.4.min.js"></script>
+    <script src="jusgage/justgage-1.2.2/justgage.js"></script>
+
+
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 600px; /* The height is 400 pixels */
+        width: 100%; /* The width is the width of the web page */
+      }
+
+    </style>
+
+    
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div id="wrapper" class="toggled">
+      <div class="overlay"></div>
+
+
+      <!-- sidebar -->
+      <nav
+        class="navbar navbar-inverse sidebar-wrapper fixed-top "
+        id="scrollspy-nav"
+        role="navigation"
+  
+      >
+        <ul class="nav sidebar-nav nav-pills">
+          <div class="sidebar-header">
+            <div class="custom-menu">
+              
+              
+            </div>
+            <div class="sidebar-brand">
+              <a href="#">Operations</a>
+            </div>
+          </div>
+          <li><a href="#map">Map</a></li>
+          <li><a href="#telemetry">Telemetry</a></li>
+          <li><a href="#distribution">Distribution</a></li>
+          <li><a href="#vialet">Vialet</a></li>
+          <li><a href="#social">Social</a></li>
+          <li class="dropdown">
+            <a
+              href="#entertainment"
+              class="dropdown-toggle"
+              data-toggle="dropdown"
+              >Entertainment <span class="caret"></span
+            ></a>
+            <ul class="dropdown-menu animated fadeInLeft" role="menu">
+              <div class="dropdown-header">List</div>
+              <li><a href="#wifi">Wifi share</a></li>
+              <li><a href="#tv">Tv</a></li>
+              <li><a href="#vtube">Vtube</a></li>
+            </ul>
+          </li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#message">Message</a></li>
+          <li><a href="#followme">Follow me</a></li>
+        </ul>
+      </nav>
+
+      <article
+        data-spy="scroll"
+        data-target="#scrollspy-nav"
+        data-offset="0"
+        style="overflow: scroll; width: auto; height: 100vh;"
+      >
+      
+        <!-- <iframe
+          id="map"
+          src="https://www.atlistmaps.com/map/fdaccd81-e43a-4f1b-bda8-e2d87368c776?share=true"
+          allow="geolocation"
+          width="100%"
+          height="600px"
+          frameborder="0"
+          scrolling="no"
+        ></iframe> -->
+
+
+        <div id="map"></div>
+
+        <hr />
+        
+
+        <div class="container-fluid" id="telemetry">
+          <div class="row">
+            <div class="col-sm-4 collone">
+              <div
+                id="gauge"
+                class="200x160px"
+                style="width: 250px; height: 250px; margin: 0 auto;"
+              ></div>
+              <input
+                type="number"
+                name="speed"
+                id="speed"
+                onchange="update()"
+                style=" margin-left: 5rem; position: relative;"
+              />
+            </div>
+            <div class="col-sm-4 pt-5 collone">
+              <figure class="highcharts-figure">
+                <div id="contain"></div>
+                <p class="highcharts-description">
+                  Chart showing Liquids and Gases 3D columns.
+                </p>
+              </figure>
+
+              <!-- <div id="container"></div> -->
+            </div>
+            <div class="col-sm-4 pt-5 collone" >
+              <table class="table table-bordered boite" >
+                <tr>
+                  <td>
+                    <h4>camera1</h4>
+                    
+                    <img src="spinner.gif" alt="" style="width: 8rem; height: 9rem;">
+                    
+                  </td>
+                  <td>
+                    <h4>camera2</h4>
+                    <img src="spinner.gif" alt="" style="width: 8rem;height: 9rem;">
+                  </td>
+                  
+                </tr>
+                <tr>
+                  <td>
+                    <h4>camera3</h4>
+                    <img src="spinner.gif" alt="" style="width: 8rem;height: 8rem;">
+                  </td>
+                  <td>
+                    <h4>camera4</h4>
+                    <img src="spinner.gif" alt="" style="width: 8rem;height: 8rem;">
+                  </td>
+                  
+                </tr>
+              </table>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-sm collone">
+              <div
+                id="contai"
+                style="
+                  width: 400px;
+                  height: 300px;
+                  margin: 0 auto;
+                  background-color: aliceblue;
+                "
+              ></div>
+            </div>
+            <div class="col-sm">
+              
+            </div>
+            <div class="col-sm collone">
+              
+              <h2>Color Picker</h2>
+
+              <label for="color-input" id="color-label" style="background-color: aqua;height: 90px;"></label>
+              <input type="checkbox" id="color-input" checked ></input>
+
+              <div id="color-picker">
+               <canvas id="color-block" height="150" width="150"></canvas>
+                <canvas id="color-strip" height="50" width="50"></canvas>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </article>
+
+      
+    </div>
+
+    <script src="index.js"></script>
+
+    <script src="./bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- highcharts -->
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        Highcharts.chart('contain', {
+          chart: {
+            type: 'column',
+            options3d: {
+              enabled: true,
+              alpha: 15,
+              beta: 15,
+              viewDistance: 25,
+              depth: 40,
+            },
+          },
+
+          title: {
+            text: 'Liquids and Gases chart',
+          },
+
+          xAxis: {
+            categories: ['Liquide1', 'Liquide2', 'Liquide3', 'Liquide4', 'Liquide5'],
+            labels: {
+              skew3d: true,
+              style: {
+                fontSize: '16px',
+              },
+            },
+          },
+
+          yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+              text: 'Gases',
+              skew3d: true,
+            },
+          },
+
+          tooltip: {
+            headerFormat: '<b>{point.key}</b><br>',
+            pointFormat:
+              '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} / {point.stackTotal}',
+          },
+
+          plotOptions: {
+            column: {
+              stacking: 'normal',
+              depth: 40,
+            },
+          },
+
+          series: [
+            {
+              name: 'John',
+              data: [5, 3, 4, 7, 2],
+              stack: 'male',
+            },
+            {
+              name: 'Joe',
+              data: [3, 4, 4, 2, 5],
+              stack: 'male',
+            },
+            {
+              name: 'Jane',
+              data: [2, 5, 6, 2, 1],
+              stack: 'female',
+            },
+            {
+              name: 'Janet',
+              data: [3, 0, 4, 4, 3],
+              stack: 'female',
+            },
+          ],
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        $(function () {
+          var chart = new Highcharts.Chart(
+            {
+              chart: {
+                renderTo: 'contai',
+                type: 'gauge',
+                alignTicks: false,
+                plotBackgroundColor: null,
+                plotBackgroundImage: null,
+                plotBorderWidth: 0,
+                plotShadow: false,
+              },
+
+              title: {
+                text: 'Speedometer with dual axes',
+              },
+
+              pane: {
+                startAngle: -150,
+                endAngle: 150,
+              },
+
+              yAxis: [
+                {
+                  min: 0,
+                  max: 200,
+                  lineColor: '#339',
+                  tickColor: '#339',
+                  minorTickColor: '#339',
+                  offset: -25,
+                  lineWidth: 2,
+                  labels: {
+                    distance: -20,
+                    rotation: 'auto',
+                  },
+                  tickLength: 5,
+                  minorTickLength: 5,
+                  endOnTick: false,
+                },
+                {
+                  min: 0,
+                  max: 124,
+                  tickPosition: 'outside',
+                  lineColor: '#933',
+                  lineWidth: 2,
+                  minorTickPosition: 'outside',
+                  tickColor: '#933',
+                  minorTickColor: '#933',
+                  tickLength: 5,
+                  minorTickLength: 5,
+                  labels: {
+                    distance: 12,
+                    rotation: 'auto',
+                  },
+                  offset: -20,
+                  endOnTick: false,
+                },
+              ],
+
+              series: [
+                {
+                  name: 'Speed',
+                  data: [80],
+                  dataLabels: {
+                    formatter: function () {
+                      var kmh = this.y,
+                        mph = Math.round(kmh * 0.621);
+                      return (
+                        '<span style="color:#339">' +
+                        kmh +
+                        ' km/h</span><br/>' +
+                        '<span style="color:#933">' +
+                        mph +
+                        ' mph</span>'
+                      );
+                    },
+                    backgroundColor: {
+                      linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1,
+                      },
+                      stops: [
+                        [0, '#DDD'],
+                        [1, '#FFF'],
+                      ],
+                    },
+                  },
+                  tooltip: {
+                    valueSuffix: ' km/h',
+                  },
+                },
+              ],
+            },
+            // Add some life
+            function (chart) {
+              setInterval(function () {
+                var point = chart.series[0].points[0],
+                  newVal,
+                  inc = Math.round((Math.random() - 0.5) * 20);
+
+                newVal = point.y + inc;
+                if (newVal < 0 || newVal > 200) {
+                  newVal = point.y - inc;
+                }
+
+                point.update(newVal);
+              }, 3000);
+            }
+          );
+        });
+      });
+    </script>
+    <script>
+      var g = new JustGage({
+        id: 'gauge',
+        value: 42,
+        min: 0,
+        max: 100,
+        relativeGaugeSize: true,
+        value: getRandomInt(0, 100),
+        title: 'Odometer',
+        customSectors: [
+          {
+            color: 'bleue',
+            lo: 0,
+            hi: 10,
+          },
+          {
+            color: 'green',
+            lo: 10,
+            hi: 20,
+          },
+          {
+            color: 'black',
+            lo: 20,
+            hi: 30,
+          },
+          {
+            color: 'red',
+            lo: 30,
+            hi: 40,
+          },
+        ],
+      });
+    </script>
+
+    <script>
+      function update() {
+        var speedo = document.getElementById('speed').value;
+        g.refresh(speedo);
+      }
+    </script>
+
+
+    <!-- color picker -->
+
+
+    <script>
+      var colorBlock = document.getElementById('color-block');
+    var ctx1 = colorBlock.getContext('2d');
+    var width1 = colorBlock.width;
+    var height1 = colorBlock.height;
+    
+    var colorStrip = document.getElementById('color-strip');
+    var ctx2 = colorStrip.getContext('2d');
+    var width2 = colorStrip.width;
+    var height2 = colorStrip.height;
+    
+    var colorLabel = document.getElementById('color-label');
+    
+    var x = 0;
+    var y = 0;
+    var drag = false;
+    var rgbaColor = 'rgba(255,0,0,1)';
+    
+    ctx1.rect(0, 0, width1, height1);
+    fillGradient();
+    
+    ctx2.rect(0, 0, width2, height2);
+    var grd1 = ctx2.createLinearGradient(0, 0, 0, height1);
+    grd1.addColorStop(0, 'rgba(255, 0, 0, 1)');
+    grd1.addColorStop(0.17, 'rgba(255, 255, 0, 1)');
+    grd1.addColorStop(0.34, 'rgba(0, 255, 0, 1)');
+    grd1.addColorStop(0.51, 'rgba(0, 255, 255, 1)');
+    grd1.addColorStop(0.68, 'rgba(0, 0, 255, 1)');
+    grd1.addColorStop(0.85, 'rgba(255, 0, 255, 1)');
+    grd1.addColorStop(1, 'rgba(255, 0, 0, 1)');
+    ctx2.fillStyle = grd1;
+    ctx2.fill();
+    
+    function click(e) {
+      x = e.offsetX;
+      y = e.offsetY;
+      var imageData = ctx2.getImageData(x, y, 1, 1).data;
+      rgbaColor = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
+      fillGradient();
+    }
+    
+    function fillGradient() {
+      ctx1.fillStyle = rgbaColor;
+      ctx1.fillRect(0, 0, width1, height1);
+    
+      var grdWhite = ctx2.createLinearGradient(0, 0, width1, 0);
+      grdWhite.addColorStop(0, 'rgba(255,255,255,1)');
+      grdWhite.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx1.fillStyle = grdWhite;
+      ctx1.fillRect(0, 0, width1, height1);
+    
+      var grdBlack = ctx2.createLinearGradient(0, 0, 0, height1);
+      grdBlack.addColorStop(0, 'rgba(0,0,0,0)');
+      grdBlack.addColorStop(1, 'rgba(0,0,0,1)');
+      ctx1.fillStyle = grdBlack;
+      ctx1.fillRect(0, 0, width1, height1);
+    }
+    
+    function mousedown(e) {
+      drag = true;
+      changeColor(e);
+    }
+    
+    function mousemove(e) {
+      if (drag) {
+        changeColor(e);
+      }
+    }
+    
+    function mouseup(e) {
+      drag = false;
+    }
+    
+    function changeColor(e) {
+      x = e.offsetX;
+      y = e.offsetY;
+      var imageData = ctx1.getImageData(x, y, 1, 1).data;
+      rgbaColor = 'rgba(' + imageData[0] + ',' + imageData[1] + ',' + imageData[2] + ',1)';
+      colorLabel.style.backgroundColor = rgbaColor;
+    }
+    
+    colorStrip.addEventListener("click", click, false);
+    
+    colorBlock.addEventListener("mousedown", mousedown, false);
+    colorBlock.addEventListener("mouseup", mouseup, false);
+    colorBlock.addEventListener("mousemove", mousemove, false);
+      
+    
+    </script>
+
+    <!-- top button -->
+
+    
+
+    
+
+    <a href="#map"><div class="up" id="up">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </div></a>
+
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        var Bali = { lat: 4.0396177, lng: 9.6902284 };
+        var Akwa = { lat: 4.0534715, lng: 9.6921971 };
+        var Bonamoussadi = { lat: 4.089185, lng: 9.7427775 };
+        var Newbell = { lat: 4.0254907, lng:9.703878 };
+        var Deido = { lat: 4.0673912, lng: 9.7025411 };
+        var Bonaberi = { lat: 4.0776879, lng: 9.6508401 };
+
+
+        // The map, centered at Uluru
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: Bali,
+          styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        });
+        
+        // The marker, positioned at Uluru1
+        var marker1 = new google.maps.Marker({ position: Bali, map: map, title:'Bali' });
+        var marker2 = new google.maps.Marker({ position: Akwa, map: map });
+        var marker3 = new google.maps.Marker({
+          position: Bonamoussadi,
+          map: map
+        });
+        var marker4 = new google.maps.Marker({ position: Newbell, map: map });
+        var marker5 = new google.maps.Marker({ position: Deido, map: map });
+        var marker6 = new google.maps.Marker({ position: Bonaberi, map: map });
+
+        var contentString1 =
+          'Bali' +
+          '<br>' +
+          '<br>' +
+          'Bali' +
+          ',' +
+          'Douala' +
+          ',' +
+          'Cameroun' +
+          '<br>' +
+          '<br>' +
+          '500';
+
+        var infowindow1 = new google.maps.InfoWindow({
+          content: contentString1
+        })
+        infowindow1.open(map, marker1)
+
+        // marker1.addListener(window,'load', function () {
+        //   infowindow1.open(map, marker1);
+          
+        // });
+
+        var contentString2 ='Akwa'+'<br>'+'<br>'+'Aqwa'+','+'Douala'+','+'Cameroun'+'<br>'+'<br>'+'350'
+
+        var infowindow2 = new google.maps.InfoWindow({
+          content: contentString2
+        });
+
+        infowindow2.open(map, marker2)
+
+        // marker2.addListener('click', function() {
+        //   infowindow2.open(map, marker2);
+        // });
+
+
+        var contentString3 ='Bonamoussadi'+'<br>'+'<br>'+'Bounamoussadi'+','+'Douala'+','+'Cameroun'+'<br>'+'<br>'+'350'
+
+        var infowindow3 = new google.maps.InfoWindow({
+          content: contentString3
+        });
+
+        // marker3.addListener('click', function() {
+        //   infowindow3.open(map, marker3);
+        // });
+        infowindow3.open(map, marker3)
+
+
+        var contentString4 ='Newbell'+'<br>'+'<br>'+'Newbell'+','+'Douala'+','+'Cameroun'+'<br>'+'<br>'+'350'
+
+        var infowindow4 = new google.maps.InfoWindow({
+          content: contentString4
+        });
+
+        // marker4.addListener('click', function() {
+        //   infowindow4.open(map, marker4);
+        // });
+        infowindow4.open(map, marker4)
+
+        var contentString5 ='Deido'+'<br>'+'<br>'+'Deido'+','+'Douala'+','+'Cameroun'+'<br>'+'<br>'+'350'
+
+        var infowindow5 = new google.maps.InfoWindow({
+          content: contentString5
+        });
+
+        
+          infowindow5.open(map, marker5);
+      
+        var contentString6 ='Bonaberi'+'<br>'+'<br>'+'Bonaberi'+','+'Douala'+','+'Cameroun'+'<br>'+'<br>'+'350'
+
+        var infowindow6 = new google.maps.InfoWindow({
+          content: contentString6
+        });
+
+        // marker6.addListener('click', function() {
+        //   infowindow6.open(map, marker6);
+        // });
+        infowindow6.open(map, marker6)
+      }
+    </script>
+    <script
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA095K546uv6lhy17DWcgVS4yX9-mCasL0&callback=initMap"
+    ></script>
+    
+  </body>
+</html>
